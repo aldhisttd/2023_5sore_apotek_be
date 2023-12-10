@@ -27,6 +27,9 @@ if (isset($_POST['kode'])) {
         $response['status'] = 200;
         $response['msg'] = 'Data Berhasil dihapus';
         $response['body']['data']['kode'] = $kode_obat;
+    }else {
+        $response['status'] = 400;
+        $response['msg'] = 'Data gagl dihapus';
     }
 }
 echo json_encode($response);
