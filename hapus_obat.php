@@ -11,7 +11,6 @@ $response = [
     ]
 ];
 
-$response = array();
 
 if (isset($_POST['kode'])) {
     $kode_obat = $_POST['kode'];
