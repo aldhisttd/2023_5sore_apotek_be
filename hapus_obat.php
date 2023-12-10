@@ -2,11 +2,11 @@
 include 'env.php';
 
 $response = [
-    'status' => '200',
-    'msg' => 'Data berhasil dihapus',
+    'status' => '',
+    'msg' => '',
     'body' => [
         'data' => [
-            'kode' => $kode_obat
+            'kode' => '',
         ]
     ]
 ];
@@ -25,9 +25,12 @@ if (isset($_POST['kode'])) {
         unlink("upload/" . $file);
 
         $delete_query = mysqli_query($koneksi, "DELETE FROM obat WHERE kode='$kode_obat'");
-
+        $response['status'] = 200;
+        $response['msg'] = 'Data Berhasil dihapus';
+        $response['body']['data']['kode'] = $kode_obat;
     }
 }
 echo json_encode($response);
 ?>
+
 
