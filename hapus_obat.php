@@ -1,6 +1,16 @@
 <?php
 include 'env.php';
 
+$response = [
+    'status' => '200',
+    'msg' => 'Data berhasil dihapus',
+    'body' => [
+        'data' => [
+            'kode' => $kode_obat
+        ]
+    ]
+];
+
 $response = array();
 
 if (isset($_POST['kode'])) {
@@ -16,21 +26,8 @@ if (isset($_POST['kode'])) {
 
         $delete_query = mysqli_query($koneksi, "DELETE FROM obat WHERE kode='$kode_obat'");
 
-        if ($delete_query) {
-            $response['success'] = true;
-            $response['msg'] = "Obat dengan kode $kode_obat berhasil dihapus.";
-        } else {
-            $response['success'] = false;
-            $response['msg'] = "Gagal menghapus obat. Error: " . mysqli_error($koneksi);
-        }
-    } else {
-        $response['success'] = false;
-        $response['msg'] = "Gagal mengambil data obat. Error: " . mysqli_error($koneksi);
     }
-} else {
-    $response['success'] = false;
-    $response['msg'] = "Parameter kode tidak diberikan.";
 }
-
 echo json_encode($response);
 ?>
+
