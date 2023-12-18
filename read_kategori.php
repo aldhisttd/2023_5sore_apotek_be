@@ -15,15 +15,12 @@ if (!isset($koneksi)) {
     $response['msg'] = 'error';
 } else {
 
-    $result = mysqli_query($koneksi, "SELECT * FROM kategori");
-    $rows = mysqli_num_rows($result);
+    $result = mysqli_query($koneksi, "SELECT * FROM kategori WHERE kode = '$kode'");
+    $row = mysqli_fetch_assoc($result);
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $data[] = $row;
-    }
     $response['status'] = 200;
     $response['msg'] = 'success';
-    $response['body']['data'] = $data;
+    $response['body']['data'] = $row;
 }
 
 echo json_encode($response);
