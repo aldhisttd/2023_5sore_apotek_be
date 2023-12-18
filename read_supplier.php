@@ -9,14 +9,14 @@ $response = [
     ]
 ];
 
-$result = mysqli_query($koneksi, "SELECT * FROM supplier");
-$rows = mysqli_num_rows($result);
-
-if ($rows == 0) {
+if (!isset($koneksi)) {
 
     $response['status'] = 400;
     $response['msg'] = 'error';
 } else {
+
+    $result = mysqli_query($koneksi, "SELECT * FROM supplier");
+    $rows = mysqli_num_rows($result);
 
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
