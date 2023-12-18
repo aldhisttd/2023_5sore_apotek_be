@@ -1,5 +1,5 @@
 <?php
-// include 'env.php';
+include 'env.php';
 
 $response = [
     'status' => '',
@@ -16,7 +16,7 @@ if(!isset($koneksi)){
     $response['status'] = 400;
     $response['msg'] = 'error';
 }else{
-
+    
     $result = mysqli_query($koneksi, "SELECT * FROM supplier WHERE kode = '$kode'");
     $row = mysqli_fetch_assoc($result);
 
