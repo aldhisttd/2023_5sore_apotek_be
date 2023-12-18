@@ -9,22 +9,21 @@ $response = [
     ]
 ];
 
-$result = mysqli_query($koneksi, "SELECT * FROM kategori");
-$rows = mysqli_num_rows($result);
-
-if ($rows == 0) {
+if (!isset($koneksi)) {
 
     $response['status'] = 400;
     $response['msg'] = 'error';
-
 } else {
+
+    $result = mysqli_query($koneksi, "SELECT * FROM kategori");
+    $rows = mysqli_num_rows($result);
 
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }
     $response['status'] = 200;
+    $response['msg'] = 'success';
     $response['body']['data'] = $data;
-    $response['msg'] = 'succes';
 }
 
 echo json_encode($response);
