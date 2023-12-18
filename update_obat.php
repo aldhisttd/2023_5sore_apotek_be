@@ -16,17 +16,17 @@ $response = [
     ]
 ];
 
-$kode = $_POST['kode'];
-$nama = $_POST['nama'];
-$kode_kategori = $_POST['kode_kategori'];
-$kode_supplier = $_POST['kode_supplier'];
-$harga = $_POST['harga'];
-
 if (!$koneksi) {
 
     $response['status'] = 400;
     $response['msg'] = "data gagal diperbarui";
 } else {
+
+    $kode = $_POST['kode'];
+    $nama = $_POST['nama'];
+    $kode_kategori = $_POST['kode_kategori'];
+    $kode_supplier = $_POST['kode_supplier'];
+    $harga = $_POST['harga'];
 
     // cek apakah user pilih gambar baru atau tidak
     if ($_FILES["gambar"]["name"] != "") {
@@ -34,15 +34,19 @@ if (!$koneksi) {
         $result = mysqli_query($koneksi, "SELECT gambar FROM obat WHERE kode = '$kode'");
         $data = mysqli_fetch_assoc($result);
         $gambar = $data['gambar'];
+
         // hapus gambar lama
         unlink("upload/" . $gambar);
-        // upload gambar baru
-        $gambarBaru = basename($_FILES["gambar"]["name"]);
-        $target_file = "upload/" . $gambarBaru;
-        $upload = move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file);
 
-        $response['body']['data']['gambar'] = 'upload/' . $gambarBaru;
-        mysqli_query($koneksi, "UPDATE obat SET gambar = 'upload/$gambarBaru' WHERE kode = '$kode'");
+        // upload gambar baru
+        $temp = explode(".", $_FILES["gambar"]["name"]);
+        $namaGambarBaru = md5(date('dmy h:i:s')) . '.' . end($temp);
+        $target_file = "upload/" . $namaGambarBaru;
+        move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file);
+
+
+        $response['body']['data']['gambar'] = 'upload/' . $namaGambarBaru;
+        mysqli_query($koneksi, "UPDATE obat SET gambar = 'upload/$namaGambarBaru' WHERE kode = '$kode'");
     }
 
     $response['status'] = 200;
