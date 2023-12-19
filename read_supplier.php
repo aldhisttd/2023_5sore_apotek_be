@@ -16,13 +16,11 @@ if (!isset($koneksi)) {
 } else {
 
     $result = mysqli_query($koneksi, "SELECT * FROM supplier");
-    while ($row = mysqli_fetch_assoc($result)) {
-        $data[] = $row;
-    }
+    $row[] = mysqli_fetch_assoc($result);
 
     $response['status'] = 200;
     $response['msg'] = 'success';
-    $response['body']['data'] = $data;
+    $response['body']['data'] = $row;
 }
 
 echo json_encode($response);
