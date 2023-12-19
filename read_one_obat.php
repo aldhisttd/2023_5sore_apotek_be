@@ -11,20 +11,18 @@ $response = [
 
 $kode = $_GET['kode'];
 
-$result = mysqli_query($koneksi, "SELECT * FROM obat WHERE kode = '$kode'");
-$rows = mysqli_num_rows($result);
+if(!isset($koneksi)){
 
-if($rows == 1){
-    while ($row = mysqli_fetch_assoc($result)){
-        $data = $row;
-    }
-    $response['status'] = 200;
-    $response['msg'] = 'success';
-    $response['body']['data'] = $data;
-} 
-if($rows == 0) {
     $response['status'] = 400;
     $response['msg'] = 'error';
+}else{
+    
+    $result = mysqli_query($koneksi, "SELECT * FROM obat WHERE kode = '$kode'");
+    $row = mysqli_fetch_assoc($result);
+
+    $response['status'] = 200;
+    $response['msg'] = 'success';
+    $response['body']['data'] = $row;
 }
 
 echo json_encode($response);
