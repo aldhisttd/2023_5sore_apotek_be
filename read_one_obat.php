@@ -9,13 +9,15 @@ $response = [
     ]
 ];
 
-if (!isset($koneksi)) {
+$kode = $_GET['kode'];
+
+if(!isset($koneksi)){
 
     $response['status'] = 400;
     $response['msg'] = 'error';
-} else {
-
-    $result = mysqli_query($koneksi, "SELECT * FROM kategori");
+}else{
+    
+    $result = mysqli_query($koneksi, "SELECT * FROM obat WHERE kode = '$kode'");
     $row = mysqli_fetch_assoc($result);
 
     $response['status'] = 200;
