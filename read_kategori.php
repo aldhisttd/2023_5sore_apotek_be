@@ -16,7 +16,7 @@ if (!isset($koneksi)) {
 } else {
 
     $result = mysqli_query($koneksi, "SELECT * FROM kategori");
-    $row = mysqli_fetch_assoc($result);
+    $row[] = mysqli_fetch_assoc($result);
 
     $response['status'] = 200;
     $response['msg'] = 'success';
