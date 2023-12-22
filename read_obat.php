@@ -16,8 +16,7 @@ if (!isset($koneksi)) {
 } else {
 
     $result = mysqli_query($koneksi, "SELECT * FROM obat");
-    $row = mysqli_fetch_all($result);
-
+    $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $response['status'] = 200;
     $response['msg'] = 'success';
     $response['body']['data'] = $row;
