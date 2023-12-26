@@ -19,14 +19,8 @@ if (!isset($koneksi)) {
     $response['msg'] = 'data gagal dihapus';
     $response['body']['data']['kode'] = $kode;
 } else {
-
-    $q = mysqli_query($koneksi,"SELECT gambar FROM obat WHERE kode='$kode'");
-    $ary = mysqli_fetch_array($q);
-    $file = $ary['gambar'];
-
-    unlink("upload/".$file);
-
-    mysqli_query($koneksi, "DELETE FROM obat WHERE kode = '$kode'");
+   
+    mysqli_query($koneksi, "DELETE FROM kategori WHERE kode = '$kode'");
     $response['status'] = 200;
     $response['msg'] = 'data berhasil dihapus';
     $response['body']['data']['kode'] = $kode;
