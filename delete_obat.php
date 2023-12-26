@@ -31,5 +31,4 @@ if (!isset($koneksi)) {
     $response['msg'] = 'data berhasil dihapus';
     $response['body']['data']['kode'] = $kode;
 }
-
 echo json_encode($response);
