@@ -24,7 +24,7 @@ if (!isset($koneksi)) {
     $ary = mysqli_fetch_array($q);
     $file = $ary['gambar'];
 
-    unlink("upload/".$file);
+    unlink($file);
 
     mysqli_query($koneksi, "DELETE FROM obat WHERE kode = '$kode'");
     $response['status'] = 200;
