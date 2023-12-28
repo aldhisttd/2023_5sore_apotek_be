@@ -44,9 +44,8 @@ if (!$koneksi) {
         $target_file = "upload/" . $namaGambarBaru;
         move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file);
 
-
         $response['body']['data']['gambar'] = 'upload/' . $namaGambarBaru;
-        mysqli_query($koneksi, "UPDATE obat SET gambar = 'upload/$namaGambarBaru' WHERE kode = '$kode'");
+        mysqli_query($koneksi, "UPDATE obat SET gambar = '$namaGambarBaru' WHERE kode = '$kode'");
     }
 
     $response['status'] = 200;
