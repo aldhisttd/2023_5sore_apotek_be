@@ -36,7 +36,7 @@ if (!$koneksi) {
         $gambar = $data['gambar'];
 
         // hapus gambar lama
-        unlink("upload/" . $gambar);
+        unlink($gambar);
 
         // upload gambar baru
         $temp = explode(".", $_FILES["gambar"]["name"]);
@@ -45,7 +45,7 @@ if (!$koneksi) {
         move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file);
 
         $response['body']['data']['gambar'] = 'upload/' . $namaGambarBaru;
-        mysqli_query($koneksi, "UPDATE obat SET gambar = '$namaGambarBaru' WHERE kode = '$kode'");
+        mysqli_query($koneksi, "UPDATE obat SET gambar = 'upload/$namaGambarBaru' WHERE kode = '$kode'");
     }
 
     $response['status'] = 200;
