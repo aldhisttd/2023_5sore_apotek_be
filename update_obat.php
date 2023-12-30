@@ -36,14 +36,13 @@ if (!$koneksi) {
         $gambar = $data['gambar'];
 
         // hapus gambar lama
-        unlink("upload/" . $gambar);
+        unlink($gambar);
 
         // upload gambar baru
         $temp = explode(".", $_FILES["gambar"]["name"]);
         $namaGambarBaru = md5(date('dmy h:i:s')) . '.' . end($temp);
         $target_file = "upload/" . $namaGambarBaru;
         move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file);
-
 
         $response['body']['data']['gambar'] = 'upload/' . $namaGambarBaru;
         mysqli_query($koneksi, "UPDATE obat SET gambar = 'upload/$namaGambarBaru' WHERE kode = '$kode'");
