@@ -15,8 +15,16 @@ if (!isset($koneksi)) {
     $response['msg'] = 'error';
 } else {
 
-    $result = mysqli_query($koneksi, "SELECT * FROM obat");
+    $query = " SELECT *, kategori.nama as nama_kategori, supplier.nama as nama_supplier
+    FROM obat
+    INNER JOIN kategori ON obat.kode_kategori = kategori.kode
+    INNER JOIN supplier ON obat.kode_supplier = supplier.kode
+    ";
+
+    $result = mysqli_query($koneksi, $query);
     $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+    
     $response['status'] = 200;
     $response['msg'] = 'success';
     $response['body']['data'] = $row;
