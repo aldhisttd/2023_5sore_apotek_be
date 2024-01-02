@@ -18,7 +18,7 @@ if(!isset($koneksi)){
 }else{
     
     $query = "  SELECT obat.*, kategori.nama as nama_kategori, supplier.nama as nama_supplier
-                FROM Obat
+                FROM obat
                 INNER JOIN kategori ON obat.kode_kategori = kategori.kode
                 INNER JOIN supplier ON obat.kode_supplier = supplier.kode
                 WHERE obat.kode = '$kode'
