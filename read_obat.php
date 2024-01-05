@@ -15,12 +15,12 @@ if (!isset($koneksi)) {
     $response['msg'] = 'error';
 } else {
 
-    $query = " SELECT *, kategori.nama as nama_kategori, supplier.nama as nama_supplier
-    FROM obat
-    INNER JOIN kategori ON obat.kode_kategori = kategori.kode
-    INNER JOIN supplier ON obat.kode_supplier = supplier.kode
+    $query = "
+        SELECT A.*, B.nama as nama_kategori, C.nama as nama_supplier
+        FROM obat A, kategori B, supplier C 
+        WHERE A.kode_kategori = B.kode 
+        AND A.kode_supplier = C.kode;
     ";
-
     $result = mysqli_query($koneksi, $query);
     $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
     

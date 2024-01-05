@@ -27,6 +27,7 @@ if (!$koneksi) {
     $kode_kategori = $_POST['kode_kategori'];
     $kode_supplier = $_POST['kode_supplier'];
     $harga = $_POST['harga'];
+    $desc = mysqli_real_escape_string($koneksi, $_POST['desc']);
 
     // cek apakah user pilih gambar baru atau tidak
     if ($_FILES["gambar"]["name"] != "") {
@@ -55,13 +56,15 @@ if (!$koneksi) {
     $response['body']['data']['kode_kategori'] = $kode_kategori;
     $response['body']['data']['kode_supplier'] = $kode_supplier;
     $response['body']['data']['harga'] = $harga;
+    $response['body']['data']['deskripsi'] = $desc;
 
     mysqli_query($koneksi, "UPDATE obat 
                             SET kode = '$kode', 
                                 nama = '$nama', 
                                 kode_kategori = '$kode_kategori',
                                 kode_supplier = '$kode_supplier',
-                                harga = '$harga'
+                                harga = '$harga',
+                                deskripsi = '$desc'
                             WHERE kode = '$kode'");
 }
 
