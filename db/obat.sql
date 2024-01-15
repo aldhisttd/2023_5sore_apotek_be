@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 20 Des 2023 pada 18.18
--- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.1.28
+-- Host: localhost
+-- Generation Time: Jan 15, 2024 at 01:52 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `obat`
+-- Table structure for table `obat`
 --
 
 CREATE TABLE `obat` (
@@ -34,15 +33,24 @@ CREATE TABLE `obat` (
   `gambar` text NOT NULL,
   `kode_kategori` int(11) NOT NULL,
   `kode_supplier` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `obat`
+--
+
+INSERT INTO `obat` (`kode`, `nama`, `gambar`, `kode_kategori`, `kode_supplier`, `harga`, `deskripsi`) VALUES
+(11, 'fasdfds', 'upload/e6c0202047fe0f9daa750549e39fdd70.png', 111, 1, 111, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the'),
+(222, 'Solinfec', 'upload/e5adc13cea937e5c90a5df29baa187ca.png', 222, 1, 321, 'fsdalkfj ksdjaflksdj faslkdjflskadfj jf sadlf fsdalkfj ksdjaflksdj faslkdjflskadfj jf sadlf fsdalkfj ksdjaflksdj faslkdjflskadfj jf sadlf');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `obat`
+-- Indexes for table `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`kode`);
